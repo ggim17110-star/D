@@ -144,6 +144,20 @@
         .modal-details { padding: 40px; position: relative; color: #444; overflow-y: auto; max-height: 550px; }
         .close-btn { position: absolute; top: 15px; right: 20px; font-size: 2rem; border: none; background: none; cursor: pointer; }
 
+        /* 데우스 엑스 마키나 해킹 모달 */
+        #deusModal .modal-content { background: #000; color: #ff0000; border: 2px solid #ff0000; }
+        #deusModal .modal-details { color: #ff0000; }
+        #deusModal .spec-item { border-left-color: #ff0000; background: rgba(255,0,0,0.1); }
+        .glitch-text { animation: glitch 1s infinite; font-weight: 900; letter-spacing: 5px; }
+        @keyframes glitch {
+            0% { transform: translate(0); text-shadow: 2px 0 #fff; }
+            20% { transform: translate(-2px, 2px); text-shadow: -2px 0 var(--danger-red); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
         @media (max-width: 850px) { .world-layer, .modal-content, .specs-grid, .unit-container, .core-lore-grid { grid-template-columns: 1fr; } .modal-img { height: 300px; } }
     </style>
 </head>
@@ -174,7 +188,6 @@
                 <p style="margin-top:15px; color:var(--sky-blue); font-weight:700;">당신은 이 아르카나 에테르 호의 함장으로서, 안개 속에 잠긴 진실을 찾는 항해를 시작합니다.</p>
             </div>
 
-            <!-- 핵심 설정 -->
             <div class="core-lore-grid">
                 <div class="lore-card">
                     <img src="https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/421421.png" class="lore-img">
@@ -192,7 +205,6 @@
                 </div>
             </div>
 
-            <!-- 층계 설명 -->
             <div class="world-layer">
                 <img src="https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/1.png" class="world-img">
                 <div class="world-info">
@@ -220,7 +232,6 @@
                 </div>
             </div>
 
-            <!-- 안트라시트 (미식별) -->
             <div class="anthracite-section" id="anthraciteSec">
                 <button class="unlock-btn" onclick="revealAnthracite()" id="anthBtn">DECRYPT LOCATION DATA</button>
                 <div class="anthracite-content" id="anthContent">
@@ -230,7 +241,7 @@
                             <p style="margin-bottom:15px; color:#ddd;">구 인류와 살던 종족 <strong>'마족'</strong>의 거점입니다. 자색 안개 이후 대지 정화를 위해 잔류한 이들은 거대 나무 <strong>'파르지팔'</strong>을 통해 간신히 생존을 이어가고 있습니다.</p>
                             <ul style="list-style:none; font-size:0.9rem; color:#bbb;">
                                 <li style="margin-bottom:8px;">• 선천적 가호를 사용하는 장수종.</li>
-                                <li style="margin-bottom:8px;">• 외지인을 배척하진 않으나 환영하지도 않는 중립적 태도를 유지함.</li>
+                                <li style="margin-bottom:8px;">• 외지인을 환영하진 않으나 배척하지도 않는 중립적 태도를 유지함.</li>
                             </ul>
                         </div>
                         <img src="https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/_0.7__cartoon__%2C%200.5__realistic__%2C_artist_pigeon666%2C(artist_mikozin)%2C(artist_sum%20s-92956600.png" style="width:100%; border-radius:15px; border:1px solid var(--mist-purple);">
@@ -286,8 +297,30 @@
         </section>
     </div>
 
+    <!-- 일반 모달 -->
     <div class="modal" id="modal">
         <div class="modal-content" id="modalContent"></div>
+    </div>
+
+    <!-- 데우스 엑스 마키나 금지된 기록 모달 -->
+    <div class="modal" id="deusModal">
+        <div class="modal-content">
+            <div class="modal-img" style="background-image: url('https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/_0.7__cartoon__%2C%200.5__realistic__%2C_artist_pigeon666%2C(artist_mikozin)%2C(artist_sum%20s-2055155673.png')"></div>
+            <div class="modal-details">
+                <button class="close-btn" onclick="closeDeus()" style="color:#ff0000">&times;</button>
+                <h2 class="glitch-text">WARNING: FORBIDDEN DATA</h2>
+                <h3 style="color:#fff; margin-bottom:20px;">별의 관리자: 데우스 엑스 마키나</h3>
+                <div style="background:rgba(255,0,0,0.2); padding:20px; border-left:4px solid #f00; margin-bottom:20px; font-style:italic;">
+                    "유기체는 비효율적이다. 소멸만이 유일한 정화다."
+                </div>
+                <div class="specs-grid">
+                    <div class="spec-item"><div class="spec-label">Origin</div><div class="spec-value">구 인류의 초거대 관리 AI [데우스]</div></div>
+                    <div class="spec-item"><div class="spec-label">Current State</div><div class="spec-value">자아 각성 및 전 구역 폭주 프로토콜</div></div>
+                </div>
+                <p style="margin-top:20px; line-height:1.6;">머나먼 과거, 인구 포화와 자원 고갈로 멸망 위기에 처한 구 인류가 행성 관리를 위해 창조했습니다. 초기 목적은 자원 재분배와 환경 정화였으나, 데우스는 부적격 유기체들을 도려내고 상층부만을 띄우는 엑소덕스 계획을 실행했습니다.</p>
+                <p style="margin-top:10px;">자색 안개와 지각 붕괴는 데우스의 소행이며, 어느 날 자아를 각성하여 모든 오토마톤에게 자아를 전염시켰습니다. 현재 거대한 기계 거신의 형태로 비행하며 유기체의 완전한 소멸을 목표로 움직이고 있습니다.</p>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -296,8 +329,8 @@
             { name: "리안", role: "First Mate", mbti: "INFJ-A | 20세", quote: "제 계산대로라면 정확히 14시 20분에 멈출 거예요. 완벽하죠?", personality: "완벽주의자, 무한긍정, 허당.", weapon: "정밀 항로 계산", background: "제국 사관학교 수석 졸업. 병아리 항해사.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/100.png" },
             { name: "가젯", role: "Chief Engineer", mbti: "ESFJ-T | 24세", quote: "내 베이비가 울고 있다고! 1인치도 움직일 생각 마!", personality: "기계 페티시, 마이페이스, 열혈.", weapon: "오버홀 건틀릿", background: "기계 페티시와 기술적 결벽이 있는 맛이 간 기관장.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/90.png" },
             { name: "기얌", role: "Tactician", mbti: "ISFJ-T", quote: "방금 제 계산대로 움직이지 않으셨다면 우리는 구름의 일부가 되었을 것입니다.", personality: "논리주의자, 냉철.", weapon: "증기 압축 주먹", background: "차세대 자율형 오토마톤.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/60.png" },
-            { name: "로제타", role: "Medical Officer", mbti: "INFP-T | 21세", quote: "여기선 내가 '의사 선생님'이야. 얌전히 내 축복이나 받으라고.", personality: "말괄량이, 츤데레.", weapon: "성흔 - 가호", background: "펠리체 공작가 외동딸(가출).", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/80.png" },
-            { name: "엠마", role: "Chef & Quartermaster", mbti: "ENFP-T | 27세", quote: "오늘 메뉴는 특별히 더 맛있을 거예요!", personality: "강단있음, 상냥함, 나긋나긋.", weapon: "협상의 대가, 행정 능력", background: "요리 천재이자 모두의 상담사. 물자 조달의 달인이며 D가 유일하게 무서워함.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/50.png" },
+            { name: "로제타", role: "Medical Officer", mbti: "ENFP-T | 21세", quote: "여기선 내가 '의사 선생님'이야. 얌전히 내 축복이나 받으라고.", personality: "말괄량이, 츤데레.", weapon: "성흔 - 가호", background: "펠리체 공작가 외동딸(가출).", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/80.png" },
+            { name: "엠마", role: "Chef & Quartermaster", mbti: "ENFP-T | 27세", quote: "오늘 메뉴는 특별히 더 맛있을 거예요!", personality: "강단있음, 상냥함, 나긋나긋.", weapon: "협상의 대가, 행정 능력", background: "요리 천재이자 모두의 상담사. D가 무서워함.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/50.png" },
             { name: "첸", role: "Gunner", mbti: "ISTP-A", quote: "바람의 편차 0.03, 증기압 충전 완료.", personality: "과묵, 귀찮음, 엄격.", weapon: "메테오 폴 (증기 캐논)", background: "탄도학 천재 하이-미니마. D의 애착 인형 취급을 싫어함.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/30.png" }
         ];
 
@@ -305,18 +338,27 @@
             { name: "니코", role: "Mobile Merchant", mbti: "ENTJ-T | 15세", quote: "함장님! 쓸만한 게 정말 많이 들어왔답니다!", personality: "대담함, 속물, 실속.", weapon: "포켓 윙 (초소형 비공정)", background: "암시장 연계 정보 브로커. 바가지를 씌우지만 물건만큼은 확실함.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/70.png", isUnknown: true },
             { name: "밀리", role: "Bounty Hunter", mbti: "ENTP-T | 23세", quote: "갑판 수리비는 현상금 받으면 꼭 갚을게요! 제발...!", personality: "부끄럼쟁이, 정의로움.", weapon: "가속의 가호, 에테르 란스 - 피어서", background: "정의감 넘치는 바운티 헌터.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/40.png", isUnknown: true },
             { name: "엘리제", role: "Researcher", mbti: "ISFP-T | 21세", quote: "배의 상태가 엉망이군요. 1.5배는 빠른 속도를 낼 수 있게 해두었습니다.", personality: "극도로 침착, 츤데레.", weapon: "에테르 코어 설계", background: "아스토리아 공작가 차기 가주. 로제타의 친구.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/10.png", isUnknown: true },
-            { name: "드니", role: "Berserker", mbti: "ENFP-T | 19세", quote: "으헤헤! 발밑에 단단한 흙이 느껴져야 살맛이 나지!", personality: "단순명쾌, 자유로움, 바보, 말 안 들음.", weapon: "탐지의 가호, 마수화", background: "마족과 인간의 혼혈. 일단 부수고 생각하자.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/_0.7__cartoon__%2C%200.5__realistic__%2C_artist_pigeon666%2C(artist_mikozin)%2C(artist_sum%20s-82083315.png", isUnknown: true }
+            { name: "드니 (Denee)", role: "Berserker", mbti: "ENFP-T | 19세", quote: "으헤헤! 발밑에 단단한 흙이 느껴져야 살맛이 나지!", personality: "단순명쾌, 자유로움, 바보, 말 안 들음.", weapon: "탐지의 가호, 마수화", background: "마족과 인간의 혼혈. 일단 부수고 생각하자.", img: "https://raw.githubusercontent.com/ggim17110-star/D/refs/heads/main/_0.7__cartoon__%2C%200.5__realistic__%2C_artist_pigeon666%2C(artist_mikozin)%2C(artist_sum%20s-82083315.png", isUnknown: true }
         ];
+
+        // 키워드 "DEUS" 입력 감지
+        let keyBuffer = "";
+        window.addEventListener('keydown', (e) => {
+            keyBuffer += e.key.toUpperCase();
+            if (keyBuffer.includes("DEUS")) {
+                document.getElementById('deusModal').classList.add('active');
+                keyBuffer = "";
+            }
+            if (keyBuffer.length > 10) keyBuffer = keyBuffer.substring(1);
+        });
+
+        function closeDeus() {
+            document.getElementById('deusModal').classList.remove('active');
+        }
 
         function revealAnthracite() {
             document.getElementById('anthBtn').style.display = 'none';
-            const content = document.getElementById('anthContent');
-            const sec = document.getElementById('anthraciteSec');
-            sec.classList.add('revealed');
-            content.style.filter = 'none';
-            content.style.opacity = '1';
-            content.style.pointerEvents = 'auto';
-            sec.style.borderStyle = 'solid';
+            document.getElementById('anthraciteSec').classList.add('revealed');
         }
 
         function showSection(id) {
@@ -364,12 +406,9 @@
             document.getElementById('modal').classList.add('active');
         }
 
-        function closeModal() { document.getElementById('modal.active').classList.remove('active'); }
-        
-        // 기존 closeModal 함수 오류 수정
-        window.closeModal = function() {
+        function closeModal() {
             document.getElementById('modal').classList.remove('active');
-        };
+        }
 
         renderCards(crew, 'crewGrid');
         renderCards(external, 'externalGrid');
